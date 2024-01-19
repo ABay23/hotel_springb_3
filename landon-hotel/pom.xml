@@ -12,7 +12,7 @@
 	<artifactId>landon-hotel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>landon-hotel</name>
-	<description>Demo project for Spring Boot</description>
+	<description>landom-hotel</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

@@ -2,7 +2,7 @@ package com.abay23.landonhotel.web.api;
 
 import com.abay23.landonhotel.data.entity.Room;
 import com.abay23.landonhotel.data.repository.RoomRepository;
-import com.abay23.landonhotel.web.exception.BadResquestException;
+import com.abay23.landonhotel.web.exception.BadRequestException;
 import com.abay23.landonhotel.web.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +34,7 @@ public class RoomApiController {
     public Room getRoom(@PathVariable("id") long id){
         Optional<Room> room = this.roomRepository.findById(id);
         if (room.isEmpty()){
-            throw new NotFoundException("Room not found wiht id: " + id);
+            throw new NotFoundException("Room not found with id: " + id);
         }
         return room.get();
     }
@@ -42,7 +42,7 @@ public class RoomApiController {
     @PutMapping("/{id}")
     public Room updatedRoom(@PathVariable("id") long id, @RequestBody Room room){
         if (id != room.getId()){
-            throw new BadResquestException("id on path doesn't match body");
+            throw new BadRequestException("id on path doesn't match body");
         }
         return this.roomRepository.save(room);
     }

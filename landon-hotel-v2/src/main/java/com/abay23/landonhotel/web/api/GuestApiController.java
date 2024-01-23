@@ -38,4 +38,12 @@ public class GuestApiController {
         }
         return guest.get();
     }
+
+    @PutMapping("/{id}")
+    public Guest updatedGuest(@PathVariable("id") long id, @RequestBody Guest guest){
+        if (id != guest.getId()){
+            throw new BadRequestException("Id on path does not match the body!");
+        }
+        return this.guestRepository.save(guest);
+    }
 }

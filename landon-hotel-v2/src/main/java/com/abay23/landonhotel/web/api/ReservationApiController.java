@@ -39,4 +39,18 @@ public class ReservationApiController {
         }
         return reservation.get();
     }
+
+    @PutMapping("/{id}")
+    public Reservation updateReservation(@PathVariable("id") long id, @RequestBody Reservation reservation){
+        if (id != reservation.getId()){
+            throw new NotFoundException("Not");
+        }
+        return this.reservationRepository.save(reservation);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.RESET_CONTENT)
+    public void deleteReservation(@PathVariable("id") long id){
+        this.reservationRepository.deleteById(id);
+    }
 }

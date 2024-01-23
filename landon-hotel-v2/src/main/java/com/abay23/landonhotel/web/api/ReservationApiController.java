@@ -2,9 +2,8 @@ package com.abay23.landonhotel.web.api;
 
 import com.abay23.landonhotel.data.entity.Reservation;
 import com.abay23.landonhotel.data.repository.ReservationRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +20,11 @@ public class ReservationApiController {
     @GetMapping
     public List<Reservation> getAllReservations(){
         return this.reservationRepository.findAll();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Reservation createReservation(@RequestBody Reservation reservation){
+        return this.reservationRepository.save(reservation);
     }
 }

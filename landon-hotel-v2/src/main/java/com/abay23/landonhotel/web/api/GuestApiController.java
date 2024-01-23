@@ -46,4 +46,10 @@ public class GuestApiController {
         }
         return this.guestRepository.save(guest);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.RESET_CONTENT)
+    public void deleteGuest(@PathVariable("id") long id){
+        this.guestRepository.deleteById(id);
+    }
 }
